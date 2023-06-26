@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gskrasti <gskrasti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:45:28 by gskrasti          #+#    #+#             */
-/*   Updated: 2023/06/20 14:49:39 by gskrasti         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:43:29 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	intersect_cylinder(t_ray *ray, t_cylinder *cylinder, double *t)
 
 	calculate_top_bottom_normals(cylinder);
 	calculate_discriminant(&d, ray, cylinder);
-	if (d.discriminat < 0)
+	if (d.discriminant < 0)
 		return (0);
-	t0 = (-1 * d.b - sqrt(d.discriminat)) / (2.0 * d.a);
-	t1 = (-1 * d.b + sqrt(d.discriminat)) / (2.0 * d.a);
+	t0 = (-1 * d.b - sqrt(d.discriminant)) / (2.0 * d.a);
+	t1 = (-1 * d.b + sqrt(d.discriminant)) / (2.0 * d.a);
 	hit_point0 = add_vec3_vec3(ray->origin, multiply_vec3(ray->direction, t0));
 	hit_point1 = add_vec3_vec3(ray->origin, multiply_vec3(ray->direction, t1));
 	if ((hit_point0.y < (cylinder->center.y - cylinder->height / 2)
@@ -60,7 +60,7 @@ void	calculate_discriminant(t_discriminant *d, t_ray *ray, t_cylinder *cy)
 	d->a = a;
 	d->b = b;
 	d->c = c;
-	d->discriminat = disc;
+	d->discriminant = disc;
 }
 
 void	draw_cylinder(int index, t_vec3 *color, t_scene *scene, t_vec3 hit_vec3)

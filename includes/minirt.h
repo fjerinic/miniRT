@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:31:19 by gskrasti          #+#    #+#             */
-/*   Updated: 2023/06/22 02:17:11 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:48:18 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,6 @@ typedef struct s_light
 	double	light_brightness;
 }	t_light;
 
-typedef struct s_lights
-{
-	t_light			light;
-	struct s_lights	*next;
-}				t_lights;
-
 typedef struct s_sphere
 {
 	t_vec3	center;
@@ -93,10 +87,17 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec3		center;
-	t_vec3		orientation;
-	t_vec3		color;
-}				t_plane;
+	t_vec3	point;
+	t_vec3	normal_vec3;
+	t_vec3	color;
+}	t_plane;
+
+typedef struct s_mat3
+{
+	t_vec3	x;
+	t_vec3	y;
+	t_vec3	z;
+}	t_mat3;
 
 typedef struct s_cylinder
 {
@@ -107,6 +108,9 @@ typedef struct s_cylinder
 	t_vec3	color;
 	t_vec3	top_normal;
 	t_vec3	bottom_normal;
+	t_mat3	rot_mat3;
+	t_mat3	inverse_rot_mat3;
+	t_vec3	hit_point[2];
 }	t_cylinder;
 
 union u_figures
@@ -120,17 +124,15 @@ typedef struct s_figures
 {
 	int					flag;
 	union u_figures		figures;
-	t_vec3				color;
 	struct s_figures	*next;
 }				t_figures;
-
 
 typedef struct s_scene
 {
 	t_amb_light	*amb_light;
 	t_camera	*camera;
-	t_lights		*lights;
-	//t_light		*light;
+	t_light		*light;
+	//t_figures	*figures;
 	int			num_spheres;
 	t_sphere	*sphere;
 	int			num_planes;
@@ -138,13 +140,8 @@ typedef struct s_scene
 	int			num_cylinders;
 	t_cylinder	*cylinder;
 	double		zoom_factor;
-	double		aspect_ratio;
-	int			height;
-	int			width;
-	double		a_scale;
-	t_vec3		a_color;
-	int			background;
-	t_figures	*figures;	
+	int		height;
+	int		width;
 }	t_scene;
 
 typedef struct s_window
@@ -169,9 +166,8 @@ typedef	struct s_discriminant
 	double	a;
 	double	b;
 	double	c;
-	double	discriminat;
+	double	discriminant;
 }		t_discriminant;
-
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		ft_new_img(t_window *mlx, t_scene *scene);
@@ -236,10 +232,10 @@ void		parse_camera(char **str, t_scene *scene);
 void		parse_light(char **str, t_scene *scene);
 
 //UTILS
-t_lights	*new_lst_l(void);
-void		add_end_l(t_lights **light);
-void		add_end_f(t_figures **figures);
-t_figures	*new_lst_f(void);
+//t_lights	*new_lst_l(void);
+//void		add_end_l(t_lights **light);
+// void		add_end_f(t_figures **figures);
+// t_figures	*new_lst_f(void);
 t_vec3		read_vector(char **str, t_scene *scene, int flag);
 double		dub(char **str, t_scene *scene, int flag);
 void		next(char **str, t_scene *scene);

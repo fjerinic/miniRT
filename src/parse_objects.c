@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:07:25 by fjerinic          #+#    #+#             */
-/*   Updated: 2023/06/11 02:16:08 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:27:14 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 void	parse_plane(char **str, t_scene *scene)
 {
-	t_figures	*temp;
-
-	add_end_f(&scene->figures);
-	temp = scene->figures;
-	while (temp->next)
-		temp = temp->next;
-	temp->flag = PL;
 	next(str, scene);
 	temp->figures.pl.center = read_vector(str, scene, 0);
 	next(str, scene);
@@ -32,13 +25,6 @@ void	parse_plane(char **str, t_scene *scene)
 
 void	parse_sphere(char **str, t_scene *scene)
 {
-	t_figures	*temp;
-
-	add_end_f(&scene->figures);
-	temp = scene->figures;
-	while (temp->next)
-		temp = temp->next;
-	temp->flag = SP;
 	next(str, scene);
 	temp->figures.sp.center = read_vector(str, scene, 0);
 	next(str, scene);

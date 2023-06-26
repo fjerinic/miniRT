@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:33:18 by gskrasti          #+#    #+#             */
-/*   Updated: 2023/06/22 01:15:31 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:48:18 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ int	main(int argc, char *argv[])
 		fatal_error("incorect file");
 	scene = parse_scene(argv[1]);
 	
-	mlx.width = 1920;
-	mlx.height = 1280;
+	// mlx.width = 1920;
+	// mlx.height = 1280;
 	scene->camera->height = mlx.height;
 	scene->camera->width = mlx.width;
 	mlx.mlx = mlx_init();

@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:03:48 by fjerinic          #+#    #+#             */
-/*   Updated: 2023/06/11 02:13:28 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:30:51 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	parse(char *str, t_scene *scene)
 		parse_camera(&str, scene);
 	else if (*str == 's' && *(str + 1) == 'p' && str++)
 		parse_sphere(&str, scene);
+	else if (*str != '#')
 	{
 		print_error("no such identifier:");
 		return (print_error(str));
@@ -42,10 +43,7 @@ int	parse(char *str, t_scene *scene)
 void	create_scene(t_scene **scene)
 {
 	(*scene) = (t_scene *)malloc(sizeof(t_scene));
-	(*scene)->figures = NULL;
 	(*scene)->light = NULL;
-	//(*scene)->mlx = NULL;
-	(*scene)->background = 0;
 	(*scene)->height = 1080;
 	(*scene)->width = 1920;
 }

@@ -6,35 +6,35 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:07:34 by fjerinic          #+#    #+#             */
-/*   Updated: 2023/06/22 02:16:01 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:33:58 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-t_lights	*new_lst_l(void)
-{
-	t_lights	*new;
+// t_lights	*new_lst_l(void)
+// {
+// 	t_lights	*new;
 
-	new = (t_lights *)malloc(sizeof(t_lights));
-	new->next = NULL;
-	return (new);
-}
+// 	new = (t_lights *)malloc(sizeof(t_lights));
+// 	new->next = NULL;
+// 	return (new);
+// }
 
-void	add_end_l(t_lights **light)
-{
-	t_lights	*temp;
+// void	add_end_l(t_lights **light)
+// {
+// 	t_lights	*temp;
 
-	if (!(*light))
-	{
-		*light = new_lst_l();
-		return ;
-	}
-	temp = *light;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new_lst_l();
-}
+// 	if (!(*light))
+// 	{
+// 		*light = new_lst_l();
+// 		return ;
+// 	}
+// 	temp = *light;
+// 	while (temp->next)
+// 		temp = temp->next;
+// 	temp->next = new_lst_l();
+// }
 
 void	parse_ambient(char **str, t_scene *scene)
 {
@@ -71,6 +71,5 @@ void	parse_light(char **str, t_scene *scene)
 	temp->light.light_point = read_vector(str, scene, 0);
 	next(str, scene);
 	temp->light.light_brightness = dub(str, scene, 1);
-	// next(str, scene);
-	// temp->light.rgb = read_vector(str, scene, 1);
+	next(str, scene);
 }
