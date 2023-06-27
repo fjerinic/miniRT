@@ -6,43 +6,21 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:07:34 by fjerinic          #+#    #+#             */
-/*   Updated: 2023/06/26 19:33:58 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/27 05:01:08 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-// t_lights	*new_lst_l(void)
-// {
-// 	t_lights	*new;
-
-// 	new = (t_lights *)malloc(sizeof(t_lights));
-// 	new->next = NULL;
-// 	return (new);
-// }
-
-// void	add_end_l(t_lights **light)
-// {
-// 	t_lights	*temp;
-
-// 	if (!(*light))
-// 	{
-// 		*light = new_lst_l();
-// 		return ;
-// 	}
-// 	temp = *light;
-// 	while (temp->next)
-// 		temp = temp->next;
-// 	temp->next = new_lst_l();
-// }
-
 void	parse_ambient(char **str, t_scene *scene)
 {
+	scene->amb_light = (t_amb_light *)malloc(sizeof(t_amb_light));
+	if (!scene->amb_light)
+		fatal_error("Ambient not allocated");
 	next(str, scene);
-	scene->a_scale = dub(str, scene, 1);
+	scene->amb_light->light_ratio = dub(str, scene, 1);
 	next(str, scene);
-	scene->a_color = read_vector(str, scene, 1);
-	scene->aspect_ratio = (double)scene->width / (double)scene->height;
+	scene->amb_light->color = read_vector(str, scene, 1);
 }
 
 void	parse_camera(char **str, t_scene *scene)
@@ -61,15 +39,12 @@ void	parse_camera(char **str, t_scene *scene)
 
 void	parse_light(char **str, t_scene *scene)
 {
-	t_lights	*temp;
-
-	add_end_l(&scene->lights);
-	temp = scene->lights;
-	while (temp->next)
-		temp = temp->next;
+	scene->light = (t_light *)malloc(sizeof(t_light));
+	if (!scene->light)
+		fatal_error("Light not allocated");
 	next(str, scene);
-	temp->light.light_point = read_vector(str, scene, 0);
+	scene->light->light_point = read_vector(str, scene, 0);
 	next(str, scene);
-	temp->light.light_brightness = dub(str, scene, 1);
+	scene->light->light_brightness = dub(str, scene, 1);
 	next(str, scene);
 }

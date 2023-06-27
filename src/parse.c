@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:03:48 by fjerinic          #+#    #+#             */
-/*   Updated: 2023/06/26 20:30:51 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/27 05:18:14 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,24 @@ int	parse(char *str, t_scene *scene)
 
 void	create_scene(t_scene **scene)
 {
+	
 	(*scene) = (t_scene *)malloc(sizeof(t_scene));
+	(*scene)->num_spheres = 0;
+	(*scene)->num_planes = 0;
+	(*scene)->num_cylinders = 0;
 	(*scene)->light = NULL;
 	(*scene)->height = 1080;
 	(*scene)->width = 1920;
+}
+
+void count_objects(char *str, t_scene *scene)
+{
+	if (*str == 'p' && *(str + 1) == 'l' && str++)
+		scene->num_planes++;
+	else if (*str == 'c' && *(str + 1) == 'y' && str++)
+		scene->num_cylinders++;
+	else if (*str == 's' && *(str + 1) == 'p' && str++)
+		scene->num_spheres++;
 }
 
 // Opens a file, reads its contents line by line, 
@@ -61,12 +75,13 @@ t_scene	*parse_scene(char *file_name)
 	fd = open(file_name, O_RDONLY);
 	scene = NULL;
 	if (fd == -1)
-		fatal_error("no such file");
+		fatal_error("file doesn't exist");
 	create_scene(&scene);
-	//init_mlx(scene);
+	mlx_init(scene);
 	str = get_next_line(fd);
 	while (str)
 	{
+		count_objects(str, scene);
 		ft_putstr_fd(str, 2);
 		if (*str != '\n')
 			if (parse(str, scene) == -1)

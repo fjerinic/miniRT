@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:27:16 by fjerinic          #+#    #+#             */
-/*   Updated: 2023/06/26 19:41:06 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/27 02:50:51 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,4 @@ t_vec3	read_vector(char **str, t_scene *scene, int flag)
 		error_v2(scene);
 	return (new);
 }
-
-// t_figures	*new_figure(void)
-// {
-// 	t_figures	*new;
-
-// 	new = (t_figures *)malloc(sizeof(t_figures));
-// 	new->next = NULL;
-// 	return (new);
-// }
-
-// void	add_end_f(t_figures **figures)
-// {
-// 	t_figures	*temp;
-
-// 	if (!(*figures))
-// 	{
-// 		*figures = new_figure();
-// 		return ;
-// 	}
-// 	temp = *figures;
-// 	while (temp->next)
-// 		temp = temp->next;
-// 	temp->next = new_figure();
-// }
-
 

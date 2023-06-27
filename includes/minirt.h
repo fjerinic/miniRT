@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:31:19 by gskrasti          #+#    #+#             */
-/*   Updated: 2023/06/26 20:48:18 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/27 02:41:52 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ typedef struct s_scene
 	t_amb_light	*amb_light;
 	t_camera	*camera;
 	t_light		*light;
-	//t_figures	*figures;
 	int			num_spheres;
 	t_sphere	*sphere;
 	int			num_planes;

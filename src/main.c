@@ -6,7 +6,7 @@
 /*   By: fjerinic <fjerinic@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:33:18 by gskrasti          #+#    #+#             */
-/*   Updated: 2023/06/26 19:48:18 by fjerinic         ###   ########.fr       */
+/*   Updated: 2023/06/27 05:16:24 by fjerinic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int	main(int argc, char *argv[])
 	// mlx.height = 1280;
 	scene->camera->height = mlx.height;
 	scene->camera->width = mlx.width;
-	mlx.mlx = mlx_init();
+	//mlx.mlx = mlx_init();
 	mlx.mlx_win = mlx_new_window(mlx.mlx, mlx.width, mlx.height, "miniRT");
 	ft_new_img(&mlx, scene);
 	mlx_key_hook(mlx.mlx_win, ft_key_hook, &mlx);
